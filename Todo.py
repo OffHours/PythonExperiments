@@ -1,33 +1,10 @@
 import re
+import functions
 
 completeCnt = 0
 
-def listItems(filepath = '/content/drive/MyDrive/Colab Notebooks/Files/todo.txt'):
-  """list items in textfile, filepath should be the path to your txt file."""
-  with open(filepath, 'r') as f:
-    for lineNumber, lineContent in enumerate(f, start=1):
-      print(f'Item Number {lineNumber} is: {lineContent.strip()}')
-
-def appItems(filepath = '/content/drive/MyDrive/Colab Notebooks/Files/todo.txt'): 
-  """Append items to a textfile, filepath should be the path to your txt file."""
-  with open(filepath, 'a') as f:
-    f.write(f'{todo.strip()}\n')
-
-def readLines(filepath = '/content/drive/MyDrive/Colab Notebooks/Files/todo.txt'):
-  """Read all lines in a text file and store return them as output"""
-  with open(filepath, 'r') as f:
-    y = f.readlines()
-  return y
-
-def writeList(y, filepath = '/content/drive/MyDrive/Colab Notebooks/Files/todo.txt'):
-  """Open txt file at the filepath provided as argument and store them in argument y"""
-  with open(filepath, 'w') as f:
-    for item in y:
-      f.write(f'{item.strip()}\n')
-
-
 print('Your things to do are: ')
-listItems()
+functions.listItems()
 
 while True:
   user_action = input('Type add, show, edit, complete, clear, help or exit: ')
@@ -36,10 +13,10 @@ while True:
   if user_action.startswith('add'):
     todo = user_action[3:]
 
-    appItems()
+    functions.appItems(todo)
 
   elif  user_action.startswith('show'):
-    listItems()
+    functions.listItems()
 
   elif user_action.startswith('edit'):
 
@@ -56,13 +33,13 @@ while True:
       newTodo = user_action.replace('edit', '')
       newTodo = newTodo.replace(changeNum,'')
 
-      content  = readLines()
+      content  = functions.readLines()
 
       # Change the specific string
       content[int(changeNum)-1] = newTodo
 
       # Write the modified content back to the file
-      writeList(content)
+      functions.writeList(content)
 
     except IndexError:
       print('Item is not in the list, try using the show command')
@@ -79,12 +56,12 @@ while True:
       else:
           print("You must give the number of the todo you want to complete")
 
-      content  = readLines()
+      content  = functions.readLines()
 
         # Delete the specific item
       content.pop(completeNum-1)
 
-      writeList(content)
+      functions.writeList(content)
 
       print('Todo ' + str(completeNum) +' is complete')
 
@@ -108,14 +85,14 @@ while True:
 
       clearNum = clearNum - 1
 
-      content  = readLines('/content/drive/MyDrive/Colab Notebooks/Files/todo.txt')
+      content  = functions.readLines('todo.txt')
 
       # Delete the specific item
       content.pop(clearNum)
 
       # Write the modified content back to the file
 
-      writeList(content)
+      functions.writeList(content)
 
     except IndexError:
       print('Item is not in the list, try using the show command')
