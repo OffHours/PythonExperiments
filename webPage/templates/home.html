@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather data API</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .custom-table-width {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    </nav>
+    <h1>Weather data API</h1>
+    <p>URL format: http://127.0.0.1:5000/api/v1/station/date</p>
+    <p>URL for one temparature at location: http://127.0.0.1:5000/api/v1/10/19580811</p>
+    <p>URL for all temparatures at a location: http://127.0.0.1:5000/api/v1/10</p>
+    <p>URL for all temperatures, for one station, in a year: http://127.0.0.1:5000/api/v1/annual/10/1958</p>
+    
+    <br>
+    <h2>Here is list of available stations for data requests.</h2>
+
+    <div class="custom-table-width">
+        <p>{{ table_html | safe }}</p>
+    </div>
+
+</body>
+</html>
