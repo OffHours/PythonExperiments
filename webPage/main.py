@@ -53,15 +53,10 @@ def year(station, year):
     filename = fr'data-small\TG_STAID{str(station).zfill(6)}.txt'
     
     df = pd.read_csv(filename, skiprows=20, parse_dates=['    DATE'])
-    #print(df)
-    # Convert the 'date' column to datetime
-    #df['    DATE'] = pd.to_datetime(df['    DATE'])
-    #print(df)
+
 
     # Filter the DataFrame for a specific year (e.g., 2022)
     dfYear = df[df['    DATE'].dt.year == int(year)]
-    
-    #print(dfYear)
     
     result = dfYear.to_dict(orient='records')
     
